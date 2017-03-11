@@ -81,7 +81,7 @@ input, textarea {
         width:100%;
       }
       &:last-of-type{
-        
+        height:1rem;
         @include pos(r);
         overflow:hidden;
         a{
@@ -104,7 +104,11 @@ input, textarea {
         font-style: normal;
         letter-spacing: -7px;
         margin: 0;
-        display:inline-block;
+        @include pos(r);
+       display:inline-block;
+        &.active{
+          @include transition(1s 1s);
+        }
       }
 
     }

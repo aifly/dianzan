@@ -9,6 +9,7 @@ class IndexApp extends Component {
 		super(props);
 		this.state={
 			introShow:1,
+			currentHref:'',
 			titleShow:false
 		};
 		this.viewW = document.documentElement.clientWidth;
@@ -27,7 +28,9 @@ class IndexApp extends Component {
 
 		var arProps = {
 			url:'./assets/images/ar.png',
-			href:'#',
+			click:()=>{
+				this.setState({currentHref:'http://xhpfm.mobile.zhongguowangshi.com/v200/newshare/551149'})
+			},
 			style:{
 				width:'2.5rem',
 				position:'absolute',
@@ -46,12 +49,14 @@ class IndexApp extends Component {
 
 		var photoProps = {
 			url:'./assets/images/photo.png',
-			href:'#',
 			style:{
 				width:'2rem',
 				position:'absolute',
 				bottom:'4.2rem',
 				left:'1.5rem',
+			},
+			click:()=>{
+				this.setState({currentHref:'http://t.cn/R4XB8Fd'})
 			},
 			imgStyle:{
 				WebkitAnimationDuration:'2.5s'
@@ -98,8 +103,16 @@ class IndexApp extends Component {
 					<NavApp {...photoProps}></NavApp>
 					<NavApp {...zanProps}></NavApp>
 					<NavApp {...arProps}></NavApp>
+				 {this.state.currentHref && <div className='showframe' style={{height:this.viewH}}>
+	                  <iframe frameBorder={0} onLoad={this.load.bind(this)} src={this.state.currentHref} width={window.innerWidth} height={window.innerHeight}></iframe>
+	                  <div className='g-continue' onTouchTap={()=>{this.setState({currentHref:''});}}>返回</div>
+	              </div>}
 			</div>
 		);
+	}
+
+	load(){
+
 	}
 
 

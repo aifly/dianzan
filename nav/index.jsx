@@ -15,7 +15,7 @@ class NavApp extends Component {
 
 		return (
 			<div className='lt-nav-main-ui'  style={this.props.style}>
-				<a href={this.props.href} onTouchTap={this.props.click} style={this.props.imgStyle} ><img  src={this.props.url} /></a>
+				<a href='javascript:void(0)' onTouchTap={this.props.click} style={this.props.imgStyle} ><img  src={this.props.url} /></a>
 				<span style={this.props.spanStyle} ></span>
 			</div>
 		);

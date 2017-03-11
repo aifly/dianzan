@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {PubCom} from '../components/public/pub.jsx';
 import './assets/css/index.css';
-import '../assets/libs/move';
 import $ from 'jquery';
 
 
@@ -11,7 +10,7 @@ class ClickApp extends Component {
 		this.state={
 			isPress:false,
 			addOne:0,
-			count:123456
+			count:0
 		};
 		this.viewW = document.documentElement.clientWidth;
 		this.viewH = document.documentElement.clientHeight;
@@ -33,12 +32,13 @@ class ClickApp extends Component {
 					<img  style={{display:this.state.addOne===1?'block':'none'}}  className='lt-stage-light' src='./assets/images/light.gif'/>
 					<img  style={{display:this.state.addOne===2?'block':'none'}}  className='lt-stage-light' src='./assets/images/light1.gif'/>
 					<img style={{display:this.state.addOne?'block':'none'}}  src='./assets/images/add.png' className='lt-addone' ref='lt-addone'/>
-					<div style={{display:this.state.addOne % 2 === 0?'block':'none'}} className='lt-click-count'>
+					<div style={{opacity:this.state.addOne % 2 === 0?1:0}} className='lt-click-count'>
 						<span>总点赞数</span>
-						<span>
-								<a ref='count' href='javascript:void(0)'>{this.formatNum(this.state.count)}</a>
+						<span ref='count-C'>
+								<a ref='count' href='javascript:void(0)'>{this.state.count}</a>
 								<div></div>
-								<a ref='count1' href='javascript:void(0)'>{this.formatNum(this.state.count+1)}</a>
+								<a ref='count1' href='javascript:void(0)'></a>
+
 						</span>
 					</div>
 				</div>
@@ -54,6 +54,25 @@ class ClickApp extends Component {
 	}
 
 	touchstart(){
+
+		this.start = this.start || 1;
+
+		if(this.start === 1){
+
+			this.start = 2;
+			document.getElementById("audio").play();
+
+		$.ajax({
+			url:'http://api.zmiti.com/v2/custom/update_total/customid/1',
+			data:{
+
+			},
+			success(data){
+
+			}
+		})
+
+
 		this.setState({
 			isPress:true,
 			
@@ -61,10 +80,8 @@ class ClickApp extends Component {
 		setTimeout(()=>{
 			this.setState({
 				isPress:false,
-				addOne:1
+				addOne:++this.state.addOne%3
 			});
-
-			
 		},150)
 
 		setTimeout(()=>{
@@ -74,8 +91,21 @@ class ClickApp extends Component {
 				setTimeout(()=>{
 					this.setState({
 						addOne:2
-					})
-				},200)
+					});
+					
+					$(this.refs['count-C']).find('.active').css({
+						top:0
+					});
+				},200);
+
+				setTimeout(()=>{
+					this.addOne(this.state.count+1);
+					this.start = 1;//开始再次点击
+				},2200);
+				
+				$(this.refs['count-C']).find('.active').animate({
+					top:'-.9rem'
+				});
 			});
 /*			ltUtil.startMove(this.refs['lt-addone'],{
 				top:this.viewW/10*2.5,
@@ -84,6 +114,14 @@ class ClickApp extends Component {
 			});
 */
 		},400)
+		}
+		else{
+			return;
+		}
+
+
+
+		
 
 	}
 
@@ -170,21 +208,24 @@ class ClickApp extends Component {
 	
 	}
 
-	addOne(){
-		var html = this.refs['count'].innerHTML+'';
-		var lastNum = this.state.count%10;
-		var hiddenNum = lastNum>=9?0:lastNum;
-		hiddenNum++;
+
+
+	addOne(num){
+		var html = this.formatNum(num)+'';
 
 		var arr = html.split('');
 		var result = '';
+		var result1 = '';
 		arr.forEach((item,i)=>{
 			result+=`
 				<b class=${i === arr.length - 1? 'active':''}>${item}</b>
 			`;
+			result1 +=`
+				<b class=${i === arr.length - 1? 'active':''}>${i === arr.length - 1?(item*1+1>9?0:item*1+1):item}</b>
+			`;
 		});
 		this.refs['count'].innerHTML = result;
-		this.refs['count'].innerHTML+= '<em>'+hiddenNum+'</em>';
+		this.refs['count1'].innerHTML = result1;
 	}
 
 	componentDidMount() {
@@ -196,7 +237,7 @@ class ClickApp extends Component {
 				success(data){
 					if(data.getret === 0){
 						s.setState({count:data.totaldz},()=>{
-							s.addOne();
+							s.addOne(s.state.count);
 							s.wxConfig();
 						})
 					}

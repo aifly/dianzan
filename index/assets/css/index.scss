@@ -31,6 +31,26 @@ input, textarea {
   outline: none;
 }
 
+.showframe{
+  @include pos(a);
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  z-index: 1000;
+}
+
+.g-continue{
+  padding:4px 10px;
+  background:#223857;
+  color:#fff;
+  @include br(4px);
+  @include pos(a);
+  font-size: .5rem;
+  right:0;
+  bottom:0;
+}
+
 .lt-index-main-ui{
   .lt-title{
     width:9rem;

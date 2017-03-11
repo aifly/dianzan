@@ -64,7 +64,7 @@ export class App extends Component {
 		    	wx.ready(()=>{
 		    			 		//朋友圈
                     wx.onMenuShareTimeline({
-                        title: '为基层代表点赞', // 分享标题
+                        title: '多少人为基层代表点赞', // 分享标题
                         link: durl, // 分享链接
                         imgUrl: "http://webapi.zmiti.com/public/dianzan/assets/images/300.jpg", // 分享图标
                         desc: "2017年两会，让我们来关注基层代表，为他们点赞吧",
@@ -73,7 +73,7 @@ export class App extends Component {
                     });
                     //朋友
                     wx.onMenuShareAppMessage({
-                        title: "为基层代表点赞", // 分享标题
+                        title: "多少人为基层代表点赞", // 分享标题
                         link: durl, // 分享链接
                         imgUrl: "http://webapi.zmiti.com/public/dianzan/assets/images/300.jpg", // 分享图标
                         type: "link",
@@ -84,7 +84,7 @@ export class App extends Component {
                     });
                     //qq
                     wx.onMenuShareQQ({
-                        title: "为基层代表点赞", // 分享标题
+                        title: "多少人为基层代表点赞", // 分享标题
                         link: durl, // 分享链接
                         imgUrl: "http://webapi.zmiti.com/public/dianzan/assets/images/300.jpg", // 分享图标
                         desc: "2017年两会，让我们来关注基层代表，为他们点赞吧",
@@ -99,7 +99,7 @@ export class App extends Component {
 
 	componentWillMount() {
 		document.querySelector('html').style.fontSize = this.viewW / 10 +'px';
-		this.wxConfig();
+		//this.wxConfig();
 
 		obserable.on('nextPage',()=>{
 			this.setState({current:1});

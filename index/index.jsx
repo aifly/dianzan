@@ -10,6 +10,7 @@ class IndexApp extends Component {
 		this.state={
 			introShow:1,
 			currentHref:'',
+			showLoading:false,
 			titleShow:false
 		};
 		this.viewW = document.documentElement.clientWidth;
@@ -29,12 +30,15 @@ class IndexApp extends Component {
 		var arProps = {
 			url:'./assets/images/ar.png',
 			click:()=>{
-				this.setState({currentHref:'http://xhpfm.mobile.zhongguowangshi.com/v200/newshare/551149'})
+				this.setState({
+					currentHref:'http://t.cn/RiSMMpX?channel=weixin',
+					showLoading:true
+				})
 			},
 			style:{
 				width:'2.5rem',
 				position:'absolute',
-				bottom:'4.0rem',
+				bottom:'4.3rem',
 				left:'6rem',
 			},
 			imgStyle:{
@@ -56,7 +60,7 @@ class IndexApp extends Component {
 				left:'1.5rem',
 			},
 			click:()=>{
-				this.setState({currentHref:'http://t.cn/R4XB8Fd'})
+				this.setState({currentHref:'http://mp.weixin.qq.com/s?__biz=MzA4NDI3NjcyNA==&mid=2649348559&idx=1&sn=dcca8853e830ff00868561c70c314245&chksm=87f4dd54b083544266532eda5c3e95ad5ea354b5bd508d604032b4d2fe3050535ddb66807061&mpshare=1&scene=1&srcid=0305KMtdj4Pjs1q7MceByXIx#rd',showLoading:true})
 			},
 			imgStyle:{
 				WebkitAnimationDuration:'2.5s'
@@ -105,14 +109,16 @@ class IndexApp extends Component {
 					<NavApp {...arProps}></NavApp>
 				 {this.state.currentHref && <div className='showframe' style={{height:this.viewH}}>
 	                  <iframe frameBorder={0} onLoad={this.load.bind(this)} src={this.state.currentHref} width={window.innerWidth} height={window.innerHeight}></iframe>
-	                  <div className='g-continue' onTouchTap={()=>{this.setState({currentHref:''});}}>返回</div>
+	                  <div className='g-continue' onTouchTap={()=>{this.setState({currentHref:'',showLoading:false});}}>返回</div>
 	              </div>}
+	              {this.state.showLoading && <div className='lt-frame-loading lt-full'><span>加载中，请稍后……</span></div>}
 			</div>
 		);
 	}
 
 	load(){
 
+		this.setState({showLoading:false})
 	}
 
 

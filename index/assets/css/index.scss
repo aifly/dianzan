@@ -37,6 +37,7 @@ input, textarea {
   top:0;
   width:100%;
   height:100%;
+  background:#fff;
   z-index: 1000;
 }
 
@@ -50,7 +51,18 @@ input, textarea {
   right:0;
   bottom:0;
 }
-
+.lt-frame-loading{
+  background:rgba(153,153,153,.7);
+  color:#fff;
+  text-align: center;
+  span{
+    @include pos(a);
+    top:50%;
+    left:50%;
+    @include transform(translate3d(-50%,0,0));
+    font-size: .5rem;
+  }
+}
 .lt-index-main-ui{
   .lt-title{
     width:9rem;

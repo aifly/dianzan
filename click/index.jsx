@@ -129,6 +129,7 @@ class ClickApp extends Component {
 	wxConfig(){
 		   var durl = location.href.split('#')[0]; //window.location;
 		        var code_durl = encodeURIComponent(durl);
+		        var s = this;
 			$.ajax({
 				url:'http://api.zmiti.com/weixin/jssdk.php',
 				dataType:'jsonp',
@@ -160,7 +161,7 @@ class ClickApp extends Component {
 		    	wx.ready(()=>{
 		    			 		//朋友圈
                     wx.onMenuShareTimeline({
-                        title: '共有'+(this.state.count+1)+'位人为基层代表点赞', // 分享标题
+                        title: '共有'+(s.state.count+1)+'位人为基层代表点赞', // 分享标题
                         link: durl, // 分享链接
                         imgUrl: "http://webapi.zmiti.com/public/dianzan/assets/images/300.jpg", // 分享图标
                         desc: "2017年两会，让我们来关注基层代表，为他们点赞吧",
@@ -169,7 +170,7 @@ class ClickApp extends Component {
                     });
                     //朋友
                     wx.onMenuShareAppMessage({
-                        title: '共有'+(this.state.count+1)+'位人为基层代表点赞', // 分享标题
+                        title: '共有'+(s.state.count+1)+'位人为基层代表点赞', // 分享标题
                         link: durl, // 分享链接
                         imgUrl: "http://webapi.zmiti.com/public/dianzan/assets/images/300.jpg", // 分享图标
                         type: "link",
@@ -180,7 +181,7 @@ class ClickApp extends Component {
                     });
                     //qq
                     wx.onMenuShareQQ({
-                        title: '共有'+(this.state.count+1)+'位人为基层代表点赞', // 分享标题
+                        title: '共有'+(s.state.count+1)+'位人为基层代表点赞', // 分享标题
                         link: durl, // 分享链接
                         imgUrl: "http://webapi.zmiti.com/public/dianzan/assets/images/300.jpg", // 分享图标
                         desc: "2017年两会，让我们来关注基层代表，为他们点赞吧",

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html style="font-size: 32px;">
+<head>
+	<title>为基层代表点赞</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+	<script>
+		 document.getElementsByTagName('html')[0].style.fontSize = document.documentElement.clientWidth/ 10+'px';
+		 document.addEventListener('touchmove',function(e){e.preventDefault();},false)
+	</script>
+    <style type="text/css">
+
+    .lt-play{
+             width:1rem;
+             height: 1rem;
+             border-radius: 50%;
+             position: fixed;
+             left: .5rem;
+             top:2.5rem;
+             z-index: 1000;
+             background:#fff url(./assets/images/music.png) no-repeat center center;
+             background-size: 70% 70%;
+        }
+        .fly-loading-C{position:absolute;left:0;top:0;width:100%;height:100%;
+            background:url(./assets/images/loading-bg.jpg) no-repeat center center;
+            background-size:cover;
+         
+        }
+    .fly-loading-C.hide{-webkit-transition:1s;transition:1s;opacity:0;z-index:-1}
+    .l-loading-scale{
+        position:absolute;top:50%;
+        color:#fff;
+        width:100%;
+        font-size:20px;
+        font-family:Georgia;
+        text-align:center;
+        margin-top:1.5rem;
+        
+    }
+    .fly-loading-canvas{
+        position: absolute;;
+           left:50%;
+            top:50%;
+            transform: translate(-50%,-50%);
+            -webkit-transform: translate(-50%,-50%);
+            overflow: hidden;
+    }
+    #loading{border-radius: 10px;position: absolute;left:0;top:0;}
+        .lt-play.active{
+             -webkit-animation: rotate linear 2s infinite;
+        }
+        @-webkit-keyframes rotate{
+            to{
+                -webkit-transform:rotate(360deg);
+            }
+        }
+
+        .lt-main-ui{
+            overflow: hidden;
+        }
+        .lt-main-ui>ul{
+            width:100%;
+            -webkit-transition:.5s;
+            transition:.5s;
+        }
+        .lt-main-ui>ul li{
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body style="overflow: hidden;background: #ffd1b2;">
+<!-- <audio src='./assets/music/bg.MP3'  loop="loop" id='audio'></audio>
+<div class='lt-play ' id='lt-play'>
+            
+</div> -->
+<div style="opacity: 0;position: fixed;left: 600px;"><img src="./assets/images/300.jpg"></div>
+		<div id="fly-main-ui" style="height: 100%">
+			 <div class="fly-loading-canvas">
+                <img src='./assets/images/logo1.png' width="69" height="69" />
+                <canvas id="loading"></canvas>
+            </div>
+            <div class='l-loading-scale' id='l-loading-scale'></div>
+            <canvas id='canvas'></canvas>
+		</div>
+
+		 
+		<script src='http://res.wx.qq.com/open/js/jweixin-1.2.0.js'></script>
+		<script>
+
+
+      /*  var audio = document.getElementById('audio');
+        var play = document.getElementById('lt-play');
+        audio.addEventListener('play',function(){
+            play.classList.add('active');
+        });
+
+        audio.addEventListener('play',function(){
+            play.classList.add('active');
+        });
+
+        audio.addEventListener('pause',function(){
+            play.classList.remove('active');
+        });
+
+        play.addEventListener('touchstart',function(e){
+            audio[audio.paused?'play':'pause']();
+        });
+        var i=0;
+        document.addEventListener('touchstart',function(e){
+            if(e.target.classList.contains('lt-play')){
+                return;
+            }
+            if(i===0){
+                audio.play();
+                i=1;
+            }
+        });*/
+
+
+         !function(document){
+
+                var size = setSize();
+
+                 var canvas = document.getElementById ( 'loading' ),
+                    context = canvas.getContext ( '2d' );
+
+                canvas.parentNode.style.width = canvas.width + "px";
+                canvas.parentNode.style.height = canvas.height + "px";
+                context.fillStyle = 'rgba(0,0,0,.5)';
+                context.fillRect ( 0, 0, canvas.width, canvas.height );
+                var x = canvas.width >> 1,
+                        y = canvas.height >> 1,
+                        r = canvas.width >> 1;
+
+                context.globalCompositeOperation = 'destination-out';
+                context.beginPath ();
+                var ang = - 90;
+                context.fillStyle = '#000';
+
+
+                 var arr = [
+                     "./assets/images/logo1.png",
+                     "./assets/images/light.jpg",
+                     "./assets/images/light.gif",
+                     "./assets/images/light1.gif",
+                     
+                ];
+
+                var scale = document.getElementById('l-loading-scale');
+
+                loading(arr,function(data){
+                    scale.innerHTML = ((data*100 | 0)>99 ? 99 : (data*100 | 0))+'%';
+                     context.moveTo ( x, y );
+                    context.arc ( x, y, r - 5, - .5 * Math.PI, (data*2 -.5)* Math.PI , false );
+                    context.closePath ();
+                    context.fill ();
+                },function(){
+
+                    var timer = setInterval(function(){
+
+                         r+=1.5;
+                        if(r>=(canvas.width+canvas.height)/2){
+                            clearInterval(timer);
+                            var s = document.createElement('script');
+                            document.body.appendChild(s);
+                            s.onload = function(){
+                                scale.innerHTML = '100%';
+                            //document.querySelector('.fly-loading-C').classList.add('hide');
+                            }
+                            
+                             /*var src = 'http://localhost:3000/index.js';
+                            if(window.location.href.indexOf('192.168.2.109')<=-1 || window.location.href.indexOf('http://localhost:8080')<=-1){
+                                src = './assets/js/index.js?t='+new Date().getTime();
+                            }*/
+                            src = './assets/js/index.js?t='+new Date().getTime();
+                            //src='http://localhost:4500/index.js'
+                            //s.src= src;
+                        }
+                        context.arc ( x, y, r, - .5 * Math.PI, 1.5 * Math.PI , false );
+                        context.closePath ();
+                        context.fill ();    
+                    },20);
+                    
+
+                   
+                });
+
+             function  loading(arr, fn, fnEnd){
+                var len = arr.length;
+                var count = 0;
+                var i = 0;
+                
+                function loadimg() {
+                    if (i === len) {
+                        return;
+                    }
+                    var img = new Image();
+                    img.onload = img.onerror = function(){
+                        count++;
+                        if (i < len - 1) {
+                            i++;
+                            loadimg();
+                            fn && fn(i / (len - 1), img.src);
+                        } else {
+                            fnEnd && fnEnd(img.src);
+                        }
+                    };
+                    img.src = arr[i];
+                }
+               loadimg();
+            }
+
+            function setSize(){
+                var viewWidth = document.documentElement.clientWidth,
+                    viewHeight = document.documentElement.clientHeight;
+                    var canvas = document.getElementById('loading');
+                    var canvas1=document.getElementById('canvas');
+                    canvas1.width = document.documentElement.clientWidth;
+                canvas.width =69;// viewWidth;
+                canvas.height =69;// viewHeight;
+                return{viewWidth:canvas.width,viewHeight:canvas.height};
+            }
+         }(document);
+
+         function onError(){
+            var script = document.createElement('script');
+            script.src ='./assets/js/index.js';
+            document.body.appendChild(script);
+         }
+		</script>
+        <!--  -->
+        <script type="text/javascript" src='http://localhost:3002/index.js' onError='onError()'></script>
+</body>
+</html>

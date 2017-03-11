@@ -1,0 +1,63 @@
+@charset "UTF-8";
+/*.ant-btn:focus, .ant-btn:hover,.ant-input:focus, .ant-input:hover {
+    background-color: #fff;
+    border-color: #bf1616;
+    box-shadow: 0 0 0 2px rgba(191, 22, 22, 0.1);
+}*/
+.lt-full {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0; }
+
+.lt-pos-a {
+  position: absolute; }
+
+.lt-pos-r {
+  position: relative; }
+
+.lt-pos-f {
+  position: fixed; }
+
+html, body, div, p, ul, li, ol, dl, dt, dd, header, footer, video, h1, h2, h3, h4, canvas, section, figure {
+  padding: 0;
+  margin: 0; }
+
+a {
+  text-decoration: none; }
+
+li {
+  list-style: none; }
+
+html, body {
+  height: 100%; }
+
+body {
+  font-family: "Helvetica Neue", 'Helvetica', "Microsoft YaHei", '微软雅黑', arial, sans-serif;
+  overflow-x: hidden; }
+
+img {
+  border: none;
+  vertical-align: middle;
+  width: 100%;
+  height: auto; }
+
+input, textarea {
+  outline: none; }
+
+.lt-index-main-ui .lt-title {
+  width: 9rem;
+  position: absolute;
+  left: .5rem;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  -webkit-transition-timing-function: cubic-bezier(0.49, 1.52, 0.38, 0.84);
+  transition-timing-function: cubic-bezier(0.49, 1.52, 0.38, 0.84); }
+  .lt-index-main-ui .lt-title.active {
+    -webkit-transform: scale(1);
+    transform: scale(1); }
+
+/*# sourceMappingURL=index.css.map */

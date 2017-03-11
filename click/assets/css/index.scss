@@ -1,0 +1,136 @@
+﻿@import "../../../assets/css/base.scss";
+
+html, body, div, p, ul, li, ol, dl, dt, dd, header, footer, video, h1, h2, h3, h4, canvas, section, figure {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+html, body {
+  height: 100%;
+}
+body{
+	  font-family: "Helvetica Neue", 'Helvetica', "Microsoft YaHei", '微软雅黑', arial, sans-serif;
+	  overflow-x:hidden;
+}
+img {
+  border: none;
+  vertical-align: middle;
+  width: 100%;
+  height: auto;
+}
+
+input, textarea {
+  outline: none;
+}
+
+
+
+
+.lt-zan-C{
+  @include pos(a);
+  width:10rem;
+  overflow: hidden;
+  height: 5rem;
+  bottom: 0;
+  .lt-zan-bg{
+    width: 14rem;
+    left: -2rem;
+    top:0;
+    @include pos(a);
+  }
+  .lt-btn{
+    @include pos(a);
+    z-index: 1;
+    left: 50%;
+    top: 1.2rem;
+    width: 3.4rem;
+    margin-left: -1.7rem;
+
+  }
+ 
+}
+
+ .lt-stage{
+    @include pos(a);
+    left: 0;
+    top:0;
+    width:100%;
+    @include transform3d();
+  }
+  .lt-stage-light{
+      @include pos(a);
+      left: 0;
+  }
+
+  .lt-click-count{
+    @include pos(a);
+    top:3rem;
+    color:#fff;
+    width:10rem;
+    span{
+      display: block;
+      &:first-of-type{
+        width:100%;
+      }
+      &:last-of-type{
+        
+        @include pos(r);
+        overflow:hidden;
+        a{
+          color:#fff;
+          @include pos(r);
+          padding: 0 10px;
+        }
+        em{
+          color:#f00;
+          @include pos(a);
+          right: 0;
+          font-size: .8rem;
+          font-weight: bold;;
+        }
+      }
+      text-align: center;
+      font-size:.8rem;
+      margin:10px 0;
+      b{
+        font-style: normal;
+        letter-spacing: -7px;
+        margin: 0;
+        display:inline-block;
+      }
+
+    }
+  }
+
+  .lt-addone{
+    @include pos(a);
+    width:5rem;
+    left: 2.5rem;
+    top: 2.5rem;
+    opacity:1;
+    @include transform(scale(0));
+    @include transformOrigin(center 80%);
+    @include transition(.8s);
+
+    &.active{
+      opacity:1;
+      @include transform(scale(1));
+      @include animation(scale linear .5s 1s forwards);
+    }
+  }
+
+@-webkit-keyframes scale{
+  
+  100%{
+    @include transform(translate3d(0,-100px,0)); 
+    opacity:0;
+  }
+}

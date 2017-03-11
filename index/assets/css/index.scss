@@ -1,0 +1,46 @@
+﻿@import "../../../assets/css/base.scss";
+
+html, body, div, p, ul, li, ol, dl, dt, dd, header, footer, video, h1, h2, h3, h4, canvas, section, figure {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+html, body {
+  height: 100%;
+}
+body{
+	  font-family: "Helvetica Neue", 'Helvetica', "Microsoft YaHei", '微软雅黑', arial, sans-serif;
+	  overflow-x:hidden;
+}
+img {
+  border: none;
+  vertical-align: middle;
+  width: 100%;
+  height: auto;
+}
+
+input, textarea {
+  outline: none;
+}
+
+.lt-index-main-ui{
+  .lt-title{
+    width:9rem;
+    @include pos(a);
+    left: .5rem;
+    @include transform(scale(0));
+    @include transition(.5s);
+    @include transitionTimingFunction(cubic-bezier(0.49, 1.52, 0.38, 0.84));
+    &.active{
+      @include transform(scale(1));
+    }
+  } 
+}

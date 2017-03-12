@@ -34,11 +34,13 @@ input, textarea {
 .showframe{
   @include pos(a);
   left:0;
+   -webkit-overflow-scrolling: touch; 
+    overflow-y: scroll; 
   top:0;
   width:100%;
   height:100%;
-  background:#fff;
   z-index: 1000;
+  background:#fff;
 }
 
 .g-continue{
@@ -49,7 +51,9 @@ input, textarea {
   @include pos(a);
   font-size: .5rem;
   right:0;
+  z-index: 1000;
   bottom:0;
+
 }
 .lt-frame-loading{
   background:rgba(153,153,153,.7);
@@ -64,6 +68,7 @@ input, textarea {
   }
 }
 .lt-index-main-ui{
+  @include transform3d();
   .lt-title{
     width:9rem;
     @include pos(a);

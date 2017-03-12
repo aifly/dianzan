@@ -31,9 +31,10 @@ class IndexApp extends Component {
 			url:'./assets/images/ar.png',
 			click:()=>{
 				this.setState({
-					currentHref:'http://t.cn/RiSMMpX?channel=weixin',
+					currentHref:'https://xhpfmapi.zhongguowangshi.com/videodetail/index.html?docid=1632114&channel=weixin',
 					showLoading:true
-				})
+				});
+				
 			},
 			style:{
 				width:'2.5rem',
@@ -75,7 +76,8 @@ class IndexApp extends Component {
 			url:'./assets/images/zan.png',
 			click:(e)=>{
 				obserable.trigger({
-					type:'nextPage'
+					type:'nextPage',
+					data:1
 				});
 				e.preventDefault();
 				return false;
@@ -107,10 +109,11 @@ class IndexApp extends Component {
 					<NavApp {...photoProps}></NavApp>
 					<NavApp {...zanProps}></NavApp>
 					<NavApp {...arProps}></NavApp>
-				 {this.state.currentHref && <div className='showframe' style={{height:this.viewH}}>
+				 {this.state.currentHref && <div className='showframe'>
 	                  <iframe frameBorder={0} onLoad={this.load.bind(this)} src={this.state.currentHref} width={window.innerWidth} height={window.innerHeight}></iframe>
-	                  <div className='g-continue' onTouchTap={()=>{this.setState({currentHref:'',showLoading:false});}}>返回</div>
+	                  
 	              </div>}
+	              {this.state.currentHref && <div className='g-continue' onTouchTap={()=>{this.setState({currentHref:'',showLoading:false});}}>返回</div>}
 	              {this.state.showLoading && <div className='lt-frame-loading lt-full'><span>加载中，请稍后……</span></div>}
 			</div>
 		);

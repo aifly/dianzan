@@ -10,7 +10,8 @@ class ClickApp extends Component {
 		this.state={
 			isPress:false,
 			addOne:0,
-			count:0
+			count:0,
+			maskShow:false
 		};
 		this.viewW = document.documentElement.clientWidth;
 		this.viewH = document.documentElement.clientHeight;
@@ -23,6 +24,13 @@ class ClickApp extends Component {
 		}
 
 		var zanStyle = {
+		}
+
+		var maskStyle = {
+			background:'url(./assets/images/arron1.png) no-repeat center top',
+			backgroundSize:'cover',
+			zIndex:1000,
+			display:this.state.maskShow?'block':'none'
 		}
 
 		return (
@@ -48,9 +56,32 @@ class ClickApp extends Component {
 				 			{!this.state.isPress && <img src='./assets/images/btn.png' />}
 				 			{this.state.isPress && <img src='./assets/images/btn1.png'/>}
 				 		</div>
+				 		<div className='lt-back' ref='back' onTouchStart={this.btnClick.bind(this,'back')}><img src='./assets/images/back.png'/></div>
+				 		<div className='lt-share' ref='share' onTouchStart={this.btnClick.bind(this,'share')}><img src='./assets/images/share-btn.png'/></div>
 				 </div>
+				 <div onTouchStart={()=>{this.setState({maskShow:false})}} className='lt-mask lt-full' style={maskStyle}></div>
 			</div>
 		);
+	}
+
+	btnClick(type){
+		let {obserable} = this.props;
+		this.refs[type].classList.add('active');
+		setTimeout(()=>{
+			this.refs[type].classList.remove('active');
+			switch(type) {
+				case 'back':
+					obserable.trigger({
+						type:'nextPage',
+						data:0
+					});
+					break;
+				case 'share':
+					this.setState({maskShow:true});
+					break;
+			}
+		},150)
+		
 	}
 
 	touchstart(){
@@ -58,7 +89,6 @@ class ClickApp extends Component {
 		this.start = this.start || 1;
 
 		if(this.start === 1){
-
 			this.start = 2;
 			document.getElementById("audio").play();
 
@@ -74,12 +104,11 @@ class ClickApp extends Component {
 
 
 		this.setState({
-			isPress:true,
+			isPress:true
 			
 		});
 		setTimeout(()=>{
 			this.setState({
-				isPress:false,
 				addOne:++this.state.addOne%3
 			});
 		},150)
@@ -100,7 +129,7 @@ class ClickApp extends Component {
 
 				setTimeout(()=>{
 					this.addOne(this.state.count+1);
-					this.start = 1;//开始再次点击
+					
 				},2200);
 				
 				$(this.refs['count-C']).find('.active').animate({

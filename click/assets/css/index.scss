@@ -122,14 +122,28 @@ input, textarea {
     opacity:1;
     @include transform(scale(0));
     @include transformOrigin(center 80%);
-    @include transition(.8s);
+    @include transition(1.2s);
 
     &.active{
       opacity:1;
       @include transform(scale(1));
-      @include animation(scale linear .5s 1s forwards);
+      @include animation(scale  1s 1.7s forwards);
     }
   }
+.lt-back,.lt-share{
+  @include pos(a);
+  top:2rem;
+  left:.5rem;
+  width:2rem;
+  &.active{
+    @include transform(translate3d(0,4px,0) scale(.95));
+  }
+}
+.lt-share{
+  @include pos(a);
+  left:auto;
+  right:.5rem;
+}
 
 @-webkit-keyframes scale{
   

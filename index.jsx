@@ -101,11 +101,14 @@ export class App extends Component {
 		document.querySelector('html').style.fontSize = this.viewW / 10 +'px';
 		//this.wxConfig();
 
-		obserable.on('nextPage',()=>{
-			this.setState({current:1});
+		obserable.on('nextPage',(data)=>{
+			this.setState({current:data});
 		})
 		
 	}
 }
-	ReactDOM.render(<App></App>,document.getElementById('fly-main-ui'));
+
+	window.renderDOM = function(){
+		ReactDOM.render(<App></App>,document.getElementById('fly-main-ui'));
+	}
 

@@ -31,7 +31,7 @@ class IndexApp extends Component {
 			url:'./assets/images/ar.png',
 			click:()=>{
 				this.setState({
-					currentHref:'https://xhpfmapi.zhongguowangshi.com/videodetail/index.html?docid=1632114&channel=weixin',
+					currentHref:'http://vr.zhongguowangshi.com/vtourImg/home.html',
 					showLoading:true
 				});
 				
@@ -61,7 +61,7 @@ class IndexApp extends Component {
 				left:'1.5rem',
 			},
 			click:()=>{
-				this.setState({currentHref:'http://mp.weixin.qq.com/s?__biz=MzA4NDI3NjcyNA==&mid=2649348559&idx=1&sn=dcca8853e830ff00868561c70c314245&chksm=87f4dd54b083544266532eda5c3e95ad5ea354b5bd508d604032b4d2fe3050535ddb66807061&mpshare=1&scene=1&srcid=0305KMtdj4Pjs1q7MceByXIx#rd',showLoading:true})
+				this.setState({currentHref:'https://xhpfmapi.zhongguowangshi.com/videodetail/index.html?docid=1632114&channel=weixin&from=singlemessage',showLoading:true})
 			},
 			imgStyle:{
 				WebkitAnimationDuration:'2.5s'

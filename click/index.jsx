@@ -10,7 +10,7 @@ class ClickApp extends Component {
 		this.state={
 			isPress:false,
 			addOne:0,
-			count:0,
+			count:1856582,
 			maskShow:false
 		};
 		this.viewW = document.documentElement.clientWidth;
@@ -266,11 +266,15 @@ class ClickApp extends Component {
 				data:{},
 				success(data){
 					if(data.getret === 0){
+
 						s.setState({count:data.totaldz},()=>{
 							s.addOne(s.state.count);
 							s.wxConfig();
 						})
 					}
+				},
+				error(){
+					s.addOne(s.state.count);
 				}
 			})
 	}

@@ -22,9 +22,9 @@ export class App extends Component {
 		}
 		return (
 			<div className='lt-main-ui' style={{height:this.viewH}}>
-					<ul style={{height:this.viewH*2,WebkitTransform:'translate3d(0,-'+(this.state.current*this.viewH)+'px,0)'}}>
+					<ul ref='ul' style={{height:this.viewH*2,WebkitTransform:'translate3d(0,-'+(this.state.current*this.viewH)+'px,0)'}}>
 						<li style={{height:this.viewH}}><IndexApp {...data}></IndexApp></li>
-						<li style={{height:this.viewH}}><ClickApp {...data}></ClickApp></li>
+						<li style={{height:this.viewH}}>{this.state.current === 1 && <ClickApp {...data}></ClickApp>}</li>
 					</ul>
 			</div>
 		);
@@ -102,7 +102,8 @@ export class App extends Component {
 		//this.wxConfig();
 
 		obserable.on('nextPage',(data)=>{
-			this.setState({current:data});
+				this.refs['ul'].classList[data === 0 ? 'add':'remove']('delay');
+				this.setState({current:data});
 		})
 		
 	}
